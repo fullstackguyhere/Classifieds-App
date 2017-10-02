@@ -1,0 +1,41 @@
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <p><strong>ngClassifieds</strong></p>
+        <md-button ng-click="vm.toggleSideBar()">
+            <md-icon class="mdi mdi-plus-circle"></md-icon>
+            New Classifieds
+        </md-button>
+        <md-button ng-click="showFilters=true">
+            <md-icon class="mdi mdi-magnify"></md-icon>
+            Search
+        </md-button>
+    </div>
+</md-toolbar> 
+
+<div class="filters" layout="row" layout-align="center center" ng-show="showFilters">
+    <md-input-container class="searchBox">
+        <label>Search Classifieds</label>
+        <input type="text" ng-model="classifiedsFilter">
+    </md-input-container>
+    
+    <md-input-container>
+        <label>Category</label>
+        <md-select ng-model="category">
+            <md-option ng-repeat="category in vm.categories" value="{{category}}">
+                {{category}}
+            </md-option>
+        </md-select>
+    </md-input-container>
+    
+    <div layout="row">
+            <md-button class="md-warn" ng-click="classifiedsFilter=''; category=''">Clear</md-button>
+    </div>
+</div>
+
+<ui-view></ui-view>
+
+<md-content>
+    <classified-card classifieds="vm.classifieds" class="md-padding" layout="row" layout-wrap>
+
+    </classified-card>
+</md-content>
